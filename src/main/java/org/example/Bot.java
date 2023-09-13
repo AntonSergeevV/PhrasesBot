@@ -36,20 +36,20 @@ public class Bot extends TelegramLongPollingBot {
         SendMessage outMess = null;
         try {
             if (update.hasMessage() && update.getMessage().hasText()) {
-                //Извлекаем из объекта сообщение пользователя
+
                 Message inMess = update.getMessage();
-                //Достаем из inMess id чата пользователя
+
                 String chatId = inMess.getChatId().toString();
-                //Получаем текст сообщения пользователя, отправляем в написанный нами обработчик
+
                 String response = parseMessage(inMess.getText());
-                //Создаем объект класса SendMessage - наш будущий ответ пользователю
+
                 outMess = new SendMessage();
 
-                //Добавляем в наше сообщение id чата а также наш ответ
+
                 outMess.setChatId(chatId);
                 outMess.setText(response);
 
-                //Отправка в чат
+
                 execute(outMess);
             }
         } catch (TelegramApiException e) {
@@ -62,7 +62,7 @@ public class Bot extends TelegramLongPollingBot {
     public String parseMessage(String textMsg) {
         String response;
 
-        //Сравниваем текст пользователя с нашими командами, на основе этого формируем ответ
+
         if (textMsg.equals("/start"))
             response = "Приветствую, бот знает много цитат. Жми /get, чтобы получить случайную из них";
         else if (textMsg.equals("/get") || textMsg.equals("Просвяти"))
@@ -74,19 +74,19 @@ public class Bot extends TelegramLongPollingBot {
     }
 
     void initKeyboard() {
-        //Создаем объект будущей клавиатуры и выставляем нужные настройки
-        replyKeyboardMarkup = new ReplyKeyboardMarkup();
-        replyKeyboardMarkup.setResizeKeyboard(true); //подгоняем размер
-        replyKeyboardMarkup.setOneTimeKeyboard(false); //скрываем после использования
 
-        //Создаем список с рядами кнопок
+        replyKeyboardMarkup = new ReplyKeyboardMarkup();
+        replyKeyboardMarkup.setResizeKeyboard(true);
+        replyKeyboardMarkup.setOneTimeKeyboard(false);
+
+
         ArrayList<KeyboardRow> keyboardRows = new ArrayList<>();
-        //Создаем один ряд кнопок и добавляем его в список
+
         KeyboardRow keyboardRow = new KeyboardRow();
         keyboardRows.add(keyboardRow);
-        //Добавляем одну кнопку с текстом "Просвяти" наш ряд
+
         keyboardRow.add(new KeyboardButton("Просвяти"));
-        //добавляем лист с одним рядом кнопок в главный объект
+
         replyKeyboardMarkup.setKeyboard(keyboardRows);
 
     }
