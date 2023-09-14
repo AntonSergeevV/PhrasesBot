@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Storage {
-    private ArrayList<String> quoteList;
+    private final ArrayList<String> quoteList;
     private FtpClient Jsoup;
 
     Storage() {
@@ -25,23 +25,23 @@ public class Storage {
         return quoteList.get(randValue);
     }
 
-    void parser(String strURL) {
-        parser("https://citatnica.ru/citaty/mudrye-tsitaty-velikih-lyudej");
-        String classNmae = "su-note-inner su-u-clearfix su-u-trim";
-        Document doc = null;
-        try {
-
-            doc = Jsoup.connect(strURL).maxBodySize(0).get();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
-        Elements elQuote = doc.getElementsByClass(classNmae);
-
-
-        elQuote.forEach(el -> {
-            quoteList.add(el.text());
-        });
+//    void parser(String strURL) {
+//        parser("https://citatnica.ru/citaty/mudrye-tsitaty-velikih-lyudej");
+//        String className = "su-note-inner su-u-clearfix su-u-trim";
+//        Document doc = null;
+//        try {
+//            doc = Jsoup.connect(strURL).maxBodySize(0).get();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+//
+//        Elements elQuote = doc.getElementsByClass(className);
+//
+//
+//        elQuote.forEach(el -> {
+//                    quoteList.add(el.text());
+//                }
+//        );
     }
-}
+
