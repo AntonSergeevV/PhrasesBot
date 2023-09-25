@@ -55,7 +55,9 @@ public class Bot extends TelegramLongPollingBot {
         } catch (TelegramApiException e) {
             e.printStackTrace();
         }
-        outMess.setReplyMarkup(replyKeyboardMarkup);
+        if (outMess != null) {
+            outMess.setReplyMarkup(replyKeyboardMarkup);
+        }
 
     }
 
