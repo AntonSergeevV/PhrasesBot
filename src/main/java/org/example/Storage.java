@@ -2,26 +2,26 @@ package org.example;
 
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class Storage {
-    private final ArrayList<String> quoteList;
+    private final List<String> quoteList = List.of(
+            "Начинать всегда стоит с того, что сеет сомнения.",
+            "80% успеха - это появиться в нужном месте в нужное время.",
+            "Мы должны признать очевидное: понимают лишь те, кто хочет понять.",
+            "Верь в себя и в то, что делаешь."
+    );
 
-    Storage() {
+    private final Random random = new Random();
 
-        quoteList = new ArrayList<>();
-        quoteList.add("Начинать всегда стоит с того, что сеет сомнения. \n\nБорис Стругацкий.");
-        quoteList.add("80% успеха - это появиться в нужном месте в нужное время.\n\nВуди Аллен");
-        quoteList.add("Мы должны признать очевидное: понимают лишь те,кто хочет понять.\n\nБернар Вербер");
-        quoteList.add("Верь в себя и в то что делаешь. \n\nНет автора");
-    }
-
-    String getRandQuote() {
-
-        int randValue = (int) (Math.random() * quoteList.size());
-
+    public String getRandQuote() {
+        int randValue = random.nextInt(quoteList.size());
         return quoteList.get(randValue);
     }
 
-
+    public void add(String quote) {
+        quoteList.add(quote);
+    }
 }
 
